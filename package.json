@@ -1,0 +1,19 @@
+{
+  "name": "couchbase-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mocha" : "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
+    "couchbase": "^4.2.7",
+    "express": "^4.18.2",
+    "mocha": "^10.2.0"
+  }
+}
