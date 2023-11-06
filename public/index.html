@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <title>Book List</title>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="max-w-xl mx-auto">
+        <h1 class="text-3xl font-bold mb-4">Book List</h1>
+        <button id="addButton" class="bg-blue-500 text-white rounded p-2 hover:bg-blue-600">Add New Book</button>
+        <div id="bookList" class="mt-4 space-y-4"></div>
+        <div id="bookDialog" class="mt-4 p-4 bg-white shadow-md rounded-lg hidden">
+            <h2 class="text-xl font-semibold mb-4">Add/Edit Book</h2>
+            <div class="mb-4">
+                <label for="titleInput" class="block text-sm font-medium text-gray-700">Title:</label>
+                <input type="text" id="titleInput" class="border border-gray-300 rounded p-2 w-full">
+            </div>
+            <div class="mb-4">
+                <label for="authorInput" class="block text-sm font-medium text-gray-700">Author:</label>
+                <input type="text" id="authorInput" class="border border-gray-300 rounded p-2 w-full">
+            </div>
+            <div class="mb-4">
+                <label for="genreInput" class="block text-sm font-medium text-gray-700">Genre:</label>
+                <input type="text" id="genreInput" class="border border-gray-300 rounded p-2 w-full">
+            </div>
+            <div class="mb-4">
+                <label for="yearInput" class="block text-sm font-medium text-gray-700">Year:</label>
+                <input type="number" id="yearInput" class="border border-gray-300 rounded p-2 w-full">
+            </div>
+            <button id="saveButton" class="bg-blue-500 text-white rounded p-2 hover:bg-blue-600 mr-2">Save</button>
+            <button id="cancelButton" class="bg-gray-300 text-gray-700 rounded p-2 hover:bg-gray-400">Cancel</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

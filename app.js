@@ -2,6 +2,7 @@
 const express = require('express');
 const couchbase = require('couchbase');
 const config = require('./config');
+const crypto = require('crypto');
 
 const appServer = async() => {
   const app = express();
@@ -26,7 +27,7 @@ const appServer = async() => {
   // Route to get all books
   app.get('/books', async (req, res) => {
       try {
-        const query = `SELECT * FROM ${bucket.name}`;
+        const query = `SELECT book.*, meta().id FROM ${bucket.name} as book`;
         const result = await cluster.query(query);
         const books = result.rows;
         res.json(books);
@@ -55,9 +56,14 @@ const appServer = async() => {
     // Route to create a new book
     app.post('/books', async (req, res) => {
       const newBook = req.body;
-      try {
-        const result = await collection.insert(newBook.id, newBook);
-        const docInDB = await collection.get(newBook.id)
+      try {     
+        let bookId = newBook.id;
+        if (!bookId) {
+          bookId = crypto.randomUUID();
+        }
+        const result = await collection.insert(bookId, newBook);
+        const docInDB = await collection.get(bookId)
+        docInDB.content.id = bookId;
         res.status(201).json(docInDB.content);
       } catch (error) {
         console.error(error);
@@ -73,6 +79,7 @@ const appServer = async() => {
       try {
         const result = await collection.replace(bookId, updatedBook);
         const docInDB = await collection.get(bookId)
+        docInDB.content.id = bookId;
         res.json(docInDB.content);
       } catch (error) {
         console.error(error);
@@ -101,6 +108,7 @@ const appServer = async() => {
       }
     });
 
+    app.use(express.static('public'));
     return app;
     
 }
